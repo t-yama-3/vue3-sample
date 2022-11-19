@@ -9,8 +9,7 @@ services:
     environment:
       - NODE_ENV=development
     volumes:
-      - type: bind
-        source: .
-        target: /workspace
+      - .:/workspace:cached
+      - /workspace/node_modules
     stdin_open: true
     tty: true

@@ -104,10 +104,21 @@ install a platform-specific binary executable.
 ```
 
 ＜参考サイト＞
+・エラーの原因について（ホスト側とコンテナ側で node_modules を別に保有する必要がある）
 [You installed esbuild on another platform than the one you're currently using.This won't work because esbuild is written with native code and needs to](https://stackoverflow.com/questions/73139649/you-installed-esbuild-on-another-platform-than-the-one-youre-currently-using-th)
 
 > node_modulesローカル環境からコンテナーにコピーしました。ローカルには darwin-arm64 アーキテクチャのパッケージがありますが、コンテナー内では、linux-arm64 のパッケージを必要とするのは Linux システムです。
 このようなエラーを回避するには、node_modules をコンテナーにコピーしないでください。
 必要なのは node_modules を.dockerignoreファイルに追加することだけです
 
+・docker-compose.yml で dockerignore が有効でないことの対応
+[Docker Ignore is not woking well with docker compose and my file structure](https://stackoverflow.com/questions/53934579/docker-ignore-is-not-woking-well-with-docker-compose-and-my-file-structure)
 
+> docker-compose.yml の 2 番目の匿名ボリュームを使用して node_modules を無視できます。
+これにより、ディレクトリをミラーリングできますが、コンテナーは独自の node_modules を保持する必要があります。
+
+```
+volumes:
+  - .:/var/www/${APP_NAME}_web
+  - /var/www/${APP_NAME}_web/node_modules/
+```
