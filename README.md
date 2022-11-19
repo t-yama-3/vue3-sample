@@ -93,7 +93,7 @@ npm install
 > npm run lint
 ```
 
-## Docker コンテナの作成
+### Docker コンテナの作成
 
 コンテナ内で `npm run dev` を実行しようとするとエラーが発生する
 
@@ -121,4 +121,41 @@ install a platform-specific binary executable.
 volumes:
   - .:/var/www/${APP_NAME}_web
   - /var/www/${APP_NAME}_web/node_modules/
+```
+
+### localhost でつながらない
+
+コンテナ内で以下のコマンドを実行すると、サーバは立ち上げっていることまでは確認できる（これがホスト側に来ていない）
+
+```
+# curl 'http://localhost:5173/'
+```
+
+vite.config.ts の 設定に sever.host = true を設定する
+
+```
+export default defineConfig({
+  // 略
+  server: {
+    host: true,
+  },
+});
+```
+
+[dockerにviteを入れてvueで開発しようとしたときlocalhostに繋がらなかった話](https://choice-site.com/2021/06/24/docker%E3%81%ABvite%E3%82%92%E5%85%A5%E3%82%8C%E3%81%A6vue%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%97%E3%82%88%E3%81%86%E3%81%A8%E3%81%97%E3%81%9F%E3%81%A8%E3%81%8Dlocalhost%E3%81%AB%E7%B9%8B%E3%81%8C/)
+
+### ホットリロードされない
+
+vite.config.ts の 設定に watch.usePolling = true を設定する
+
+```
+export default defineConfig({
+  // 略
+  server: {
+    // 略
+    watch: {
+      usePolling: true,
+    },
+  },
+});
 ```
