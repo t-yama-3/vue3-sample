@@ -64,3 +64,31 @@ npm run lint
   npm run dev
 ```
 
+### git init
+
+```
+> git init
+```
+
+### npm install を実行
+
+```
+npm install
+```
+
+
+### .prettierrc.json 修正
+
+```
+{
+  "printWidth": 120,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi": true,
+  "endOfLine": "lf"
+}
+```
+
+```
+> npm run lint
+```
