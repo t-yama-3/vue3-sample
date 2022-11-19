@@ -159,3 +159,5 @@ export default defineConfig({
   },
 });
 ```
+
+[公式 server.watch](https://ja.vitejs.dev/config/server-options.html#server-watch)
