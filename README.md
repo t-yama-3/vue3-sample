@@ -161,3 +161,38 @@ export default defineConfig({
 ```
 
 [公式 server.watch](https://ja.vitejs.dev/config/server-options.html#server-watch)
+
+### axios
+
+#### Vue CLI の場合
+
+```
+npm install --save axios vue-axios
+```
+
+main.ts に以下を追加
+
+```
+import axios from 'axios'; // 追加
+import VueAxios from 'vue-axios'; // 追加
+
+const app = createApp(App);
+app.use(VueAxios, axios); // 追加
+```
+
+[vue-axios](https://www.npmjs.com/package/vue-axios)
+
+
+#### Vite の場合
+
+'vue-axios' はインストールしない
+
+```
+> npm install --save axios
+```
+
+Store で名称が重複すると次のようなエラーが出る（state と getters の名称重複など）
+
+```
+Cannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+```
