@@ -161,3 +161,23 @@ export default defineConfig({
 ```
 
 [公式 server.watch](https://ja.vitejs.dev/config/server-options.html#server-watch)
+
+### axios
+
+```
+npm install --save axios vue-axios
+```
+
+main.ts に以下を追加
+
+```
+import axios from 'axios'; // 追加
+import VueAxios from 'vue-axios'; // 追加
+
+const app = createApp(App);
+app.use(VueAxios, axios); // 追加
+```
+
+[vue-axios](https://www.npmjs.com/package/vue-axios)
+
+
