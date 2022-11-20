@@ -5,9 +5,23 @@ import ToolingIcon from './icons/IconTooling.vue';
 import EcosystemIcon from './icons/IconEcosystem.vue';
 import CommunityIcon from './icons/IconCommunity.vue';
 import SupportIcon from './icons/IconSupport.vue';
+import { ref } from 'vue';
+import { useStoreSample } from '@/stores/sample';
+import { storeToRefs } from 'pinia';
+
+const base = import.meta.env.VITE_API_BASE_URL;
+const url = ref(base);
+const storeSample = useStoreSample();
+const { samples, selectSamples } = storeToRefs(storeSample);
 </script>
 
 <template>
+  <div>
+    <button @click="storeSample.fetchSamples()">sample</button>
+    <div>{{ url }}</div>
+    <div>{{ samples }}</div>
+    <div>{{ selectSamples }}</div>
+  </div>
   <WelcomeItem>
     <template #icon>
       <DocumentationIcon />
