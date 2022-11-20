@@ -2,9 +2,6 @@ import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-// import dns from 'dns';
-
-// dns.setDefaultResultOrder('verbatim');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,10 +12,10 @@ export default defineConfig({
     },
   },
   server: {
-    host: true,
-    port: 8080,
+    host: true, // ホスト側のブラウザでアクセス可能とする
+    port: 8080, // デフォルトは 5173
     watch: {
-      usePolling: true,
+      usePolling: true, // コンテナでもホットリロードできるようにする
     },
   },
 });
